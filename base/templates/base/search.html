@@ -1,0 +1,45 @@
+{% extends "base/base.html" %}
+{% load django_tables2 %}
+{% block content %}
+
+<style>
+  .msggg, .error {
+    color: red;
+    font-size: large;
+  }
+
+  .success {
+    color: green;
+    font-size: large;
+  }
+</style>
+
+<div class='msggg'>
+  {% if messages%}
+  {% for message in messages%}
+  <small {% if message.tags %} class="{{message.tags}}" {% endif%}>
+    {{message}}
+  </small>
+  {% endfor %}
+  {% endif %}
+</div>
+<div class="container pt-4">
+  <div  style="background-color: aquamarine" class="row p-0 mt-4">
+    
+    <div class="col">
+      <div class="border">
+        {%if view_todos|length != 0 %}
+        {% render_table table %}
+        {%else%}
+        <p class='display-4'>No Task present with name <span style="color: royalblue; font-size:80px;">{{query}}</span> !!
+        <p>
+          {%endif%}
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</div>
+
+{% endblock %}
